@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { Link } from 'react-router';
 import { Reservation, ReservationStatus } from '../../types/reservation';
 import ReservationCard from './ReservationCard/ReservationCard';
 import './ReservationBoard.css';
@@ -38,30 +39,43 @@ const ReservationBoard: React.FC<ReservationBoardProps> = ({ reservations }) => 
   };
 
   return (
-    <div className="reservation-board">
-      {Object.entries(groupedReservations).map(([status, reservationList]) => (
-          <div key={status} className="status-column">
-            <div 
-              className="status-header" 
-            style={{ backgroundColor: statusColors[status as ReservationStatus] }}
-            >
-              <h2>{status}</h2>
-              <span className="reservation-count">{reservationList.length}</span>
+    <div>
+      <div className='reservation-actions'>
+        <Link to='/add' className='btn-action-secondary'>
+          New Reservation
+        </Link>
+      </div>
+      <div className='reservation-board'>
+        {Object.entries(groupedReservations).map(
+          ([status, reservationList]) => (
+            <div key={status} className='status-column'>
+              <div
+                className='status-header'
+                style={{
+                  backgroundColor: statusColors[status as ReservationStatus]
+                }}
+              >
+                <h2>{status}</h2>
+                <span className='reservation-count'>
+                  {reservationList.length}
+                </span>
+              </div>
+              <div className='reservation-list'>
+                {reservationList.map((reservation) => (
+                  <ReservationCard
+                    key={reservation.id}
+                    reservation={reservation}
+                    statusColor={statusColors[reservation.status]}
+                  />
+                ))}
+                {reservationList.length === 0 && (
+                  <div className='empty-status'>Brak rezerwacji</div>
+                )}
+              </div>
             </div>
-            <div className="reservation-list">
-              {reservationList.map(reservation => (
-                <ReservationCard 
-                  key={reservation.id} 
-                  reservation={reservation} 
-                  statusColor={statusColors[reservation.status]}
-                />
-              ))}
-              {reservationList.length === 0 && (
-                <div className="empty-status">Brak rezerwacji</div>
-              )}
-            </div>
-          </div>
-      ))}
+          )
+        )}
+      </div>
     </div>
   );
 };
