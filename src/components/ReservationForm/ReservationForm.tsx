@@ -190,7 +190,7 @@ export default function ReservationForm({ reservation }: ReservationForm) {
           type='submit'
           className='btn-action-secondary'
         >
-          Dodaj rezerwację
+          {isEditMode ? 'Edytuj' : 'Dodaj'} rezerwację
         </button>
       </form>
     </div>
