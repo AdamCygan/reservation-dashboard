@@ -109,4 +109,55 @@
   font-size: 0.75rem;
   color: #7f8c8d;
   font-style: italic;
-} 
+}
+
+.menu-dropdown {
+  position: absolute;
+  z-index: 10;
+  min-width: 140px;
+  margin-top: 0.5rem;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  padding: 0.25rem 0;
+  font-size: 0.9rem;
+  overflow: hidden;
+}
+
+.menu-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  font-size: 0.9rem;
+  color: #2c3e50;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  text-decoration: none;
+}
+
+.menu-item:hover,
+.menu-item:focus {
+  background-color: #f0f0f0;
+  color: #000;
+  outline: none;
+}
+
+.btn-action {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  padding: 0.2rem 0.8rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.btn-action:hover {
+  background-color: #f2f2f2;
+  color: #2c3e50;
+}

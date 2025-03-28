@@ -41,6 +41,29 @@
   color: #2c3e50;
 }
 
+input,
+select {
+  padding: 0.5rem;
+  height: 2rem;
+  border: 1px solid #2c3e50;
+  border-radius: 4px;
+  background-color: #fff;
+  width: 100%;
+}
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.data-row {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+}
+
 .form-title-wrapper {
   height: 100vh;
   display: flex;

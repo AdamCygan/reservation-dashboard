@@ -8,8 +8,9 @@ interface ReservationBoardProps {
   reservations: Reservation[];
 }
 
-const ReservationBoard: React.FC<ReservationBoardProps> = ({ reservations }) => {
-
+const ReservationBoard: React.FC<ReservationBoardProps> = ({
+  reservations
+}) => {
   const groupedReservations = useMemo(() => {
     const groups: Record<ReservationStatus, Reservation[]> = {
       'Reserved': [],
@@ -21,7 +22,7 @@ const ReservationBoard: React.FC<ReservationBoardProps> = ({ reservations }) => 
       'No Show': []
     };
 
-    reservations.forEach(reservation => {
+    reservations.forEach((reservation) => {
       groups[reservation.status].push(reservation);
     });
 
@@ -42,7 +43,7 @@ const ReservationBoard: React.FC<ReservationBoardProps> = ({ reservations }) => 
     <div>
       <div className='reservation-actions'>
         <Link to='/add' className='btn-action-secondary'>
-          New Reservation
+          Dodaj rezerwację
         </Link>
       </div>
       <div className='reservation-board'>
@@ -80,4 +81,4 @@ const ReservationBoard: React.FC<ReservationBoardProps> = ({ reservations }) => 
   );
 };
 
-export default ReservationBoard; 
+export default ReservationBoard;

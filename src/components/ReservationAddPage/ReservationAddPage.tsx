@@ -1,3 +1,5 @@
+import ReservationForm from '../ReservationForm/ReservationForm';
+
 const ReservationAddPage = () => {
   return (
     <div className='form-title-wrapper'>
@@ -5,7 +7,7 @@ const ReservationAddPage = () => {
         <h2>Rezerwacja</h2>
         <p>Formularz do dodania rezerwacji</p>
       </div>
-      <form></form>
+      <ReservationForm />
     </div>
   );
 };
