@@ -16,6 +16,10 @@ interface ReservationContextProps {
   updateReservation: (reservation: Reservation) => void;
   deleteReservation: (reservationId: string) => void;
   generateReservationId: () => string;
+  moveReservationToStatus: (
+    id: string,
+    newStatus: Reservation['status']
+  ) => void;
 }
 
 const ReservationContext = createContext<ReservationContextProps | undefined>(
@@ -70,6 +74,15 @@ export const ReservationProvider = ({
     return `res-${nextId}`;
   }, [reservations]);
 
+  const moveReservationToStatus = useCallback(
+    (id: string, newStatus: Reservation['status']) => {
+      setReservations((prev) =>
+        prev.map((res) => (res.id === id ? { ...res, status: newStatus } : res))
+      );
+    },
+    []
+  );
+
   return (
     <ReservationContext.Provider
       value={{
@@ -78,7 +91,8 @@ export const ReservationProvider = ({
         addReservation,
         updateReservation,
         deleteReservation,
-        generateReservationId
+        generateReservationId,
+        moveReservationToStatus
       }}
     >
       {loading ? (

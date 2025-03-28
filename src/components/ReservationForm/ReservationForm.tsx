@@ -1,12 +1,12 @@
 import { z } from 'zod';
-import { Reservation } from '../../types/reservation';
-
-import './ReservationForm.css';
+import { toast } from 'sonner';
+import { useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+
+import { Reservation } from '../../types/reservation';
 import { useReservationContext } from '../../context/ReservationContext';
-import { useNavigate } from 'react-router';
-import { toast } from 'sonner';
+import './ReservationForm.css';
 
 const ReservationStatusEnum = z.enum([
   'Reserved',

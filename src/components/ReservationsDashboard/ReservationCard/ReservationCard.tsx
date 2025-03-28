@@ -1,11 +1,13 @@
 import React from 'react';
+import { toast } from 'sonner';
+import { Link } from 'react-router';
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import { Reservation } from '../../../types/reservation';
 import { formatDate } from '../../../utils/dateFormatters';
-import './ReservationCard.css';
-import { toast } from 'sonner';
 import { useReservationContext } from '../../../context/ReservationContext';
-import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
-import { Link } from 'react-router';
+import './ReservationCard.css';
 
 interface ReservationCardProps {
   reservation: Reservation;
@@ -16,6 +18,14 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
   reservation,
   statusColor
 }) => {
+  const { attributes, listeners, setNodeRef, transform } = useSortable({
+    id: reservation.id
+  });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition: 'transform 0.2s ease'
+  };
   const { deleteReservation } = useReservationContext();
 
   const handleDeleteReservation = (id: string) => {
@@ -29,7 +39,13 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
   };
 
   return (
-    <div className='reservation-card'>
+    <div
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+      className='reservation-card'
+    >
       <div
         className='card-status-indicator'
         style={{ backgroundColor: statusColor }}

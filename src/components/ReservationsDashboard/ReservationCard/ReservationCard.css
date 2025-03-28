@@ -5,6 +5,7 @@
   overflow: hidden;
   position: relative;
   transition: transform 0.2s, box-shadow 0.2s;
+  cursor: grab;
 }
 
 .reservation-card:hover {
